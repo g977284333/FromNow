@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fromnow/business/login/login_model_view.dart';
 
-import 'framework/widgets/images/big_image_page.dart';
 import 'framework/widgets/images/photo_gallery.dart';
 
 void main() {
@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
             GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => BigImagePage()));
+                      MaterialPageRoute(builder: (context) => LoginPageView()));
                 },
                 child: Image.asset("images/img_1.jpg"))
           ],

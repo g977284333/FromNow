@@ -7,6 +7,7 @@ import 'package:fromnow/framework/mvvm/statepage/mf_page_loading.dart';
 import 'package:provider/provider.dart';
 
 import 'base_view_model.dart';
+import 'base_view_state.dart';
 import 'iview.dart';
 
 abstract class BaseView<T extends BaseViewModel> extends StatefulWidget
@@ -17,6 +18,7 @@ abstract class BaseView<T extends BaseViewModel> extends StatefulWidget
   State<StatefulWidget> createState() {
     viewModel = createViewModel();
     viewModel?.title = getTitle();
+    return BaseViewState(this, viewModel, registProviders());
   }
 
   T createViewModel();
