@@ -33,9 +33,7 @@ class BaseViewState<T extends BaseViewModel> extends State<BaseView>
     return MultiProvider(
         providers: createProviders(context),
         child: Scaffold(
-          appBar: PreferredSize(
-              child: _iView?.createAppBar(context) ?? null,
-              preferredSize: Size.fromHeight(50)),
+          appBar: _iView?.createAppBar(context) ?? null,
           body: Stack(
             children: createPageView(contentView),
           ),

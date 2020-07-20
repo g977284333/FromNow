@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fromnow/business/login/login_model_view.dart';
+import 'package:fromnow/business/login/login_page_view.dart';
 
 import 'framework/widgets/images/photo_gallery.dart';
 

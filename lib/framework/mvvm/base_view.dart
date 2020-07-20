@@ -29,33 +29,35 @@ abstract class BaseView<T extends BaseViewModel> extends StatefulWidget
 
   /// titleView
   @override
-  AppBar createAppBar(BuildContext ctx) {
-    return AppBar(
-      title: Selector(builder: (ctx, String title, _) {
-        return Text(
-          title ?? "",
-          style: TextStyle(color: Color(0xFF474245)),
-        );
-      }, selector: (ctx, T model) {
-        return model.title;
-      }),
-      centerTitle: true,
-      backgroundColor: Colors.white,
-      elevation: getAppBarElevation(),
-      leading: GestureDetector(
-        child: Container(
-          margin: EdgeInsets.all(16),
-          child: Image.asset(
-            'images/ic_back.png',
-            fit: BoxFit.scaleDown,
+  Widget createAppBar(BuildContext ctx) {
+    return PreferredSize(
+        child: AppBar(
+          title: Selector(builder: (ctx, String title, _) {
+            return Text(
+              title ?? "",
+              style: TextStyle(color: Color(0xFF474245)),
+            );
+          }, selector: (ctx, T model) {
+            return model.title;
+          }),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          elevation: getAppBarElevation(),
+          leading: GestureDetector(
+            child: Container(
+              margin: EdgeInsets.all(16),
+              child: Image.asset(
+                'images/ic_back.png',
+                fit: BoxFit.scaleDown,
+              ),
+            ),
+            onTap: () {
+              Navigator.of(ctx).pop();
+              onBack();
+            },
           ),
         ),
-        onTap: () {
-          Navigator.of(ctx).pop();
-          onBack();
-        },
-      ),
-    );
+        preferredSize: Size.fromHeight(getAppBarHeight()));
   }
 
   /// 显示loading页面
@@ -119,6 +121,10 @@ abstract class BaseView<T extends BaseViewModel> extends StatefulWidget
 
   getAppBarElevation() {
     return 0.2;
+  }
+
+  double getAppBarHeight() {
+    return 50;
   }
 
   @override

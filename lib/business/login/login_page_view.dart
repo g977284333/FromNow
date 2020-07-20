@@ -22,4 +22,9 @@ class LoginPageView extends BaseView<LoginViewModel> {
 
   @override
   void initState(BuildContext context) {}
+
+  @override
+  double getAppBarHeight() {
+    return 0;
+  }
 }

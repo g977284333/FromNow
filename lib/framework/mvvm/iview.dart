@@ -23,7 +23,7 @@ abstract class IView {
   Widget createEmptyPageView();
 
   /// 设置标题栏
-  AppBar createAppBar(BuildContext context);
+  Widget createAppBar(BuildContext context);
 
   /// 界面可见 从后台切换到前台
   void resumed();
