@@ -1,4 +1,4 @@
-import 'package:fromnow/config/config.dart';
+import 'package:fromnow/framework/config/config.dart';
 import 'package:stack_trace/stack_trace.dart';
 
 /// 日志输出类

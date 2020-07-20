@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:fromnow/config/config.dart';
+import 'package:fromnow/framework/config/config.dart';
 
 class LogInterceptors extends InterceptorsWrapper {
   @override

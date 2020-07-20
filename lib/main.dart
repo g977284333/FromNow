@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fromnow/widgets/images/big_image_page.dart';
-import 'package:fromnow/widgets/images/photo_gallery.dart';
+
+import 'framework/widgets/images/big_image_page.dart';
+import 'framework/widgets/images/photo_gallery.dart';
 
 void main() {
   runApp(MyApp());

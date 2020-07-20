@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fromnow/mvvm/base_view_model.dart';
-import 'package:fromnow/mvvm/page_state.dart';
-import 'package:fromnow/mvvm/statepage/mf_page_empty.dart';
-import 'package:fromnow/mvvm/statepage/mf_page_error.dart';
-import 'package:fromnow/mvvm/statepage/mf_page_loading.dart';
+import 'package:fromnow/framework/mvvm/page_state.dart';
+import 'package:fromnow/framework/mvvm/statepage/mf_page_empty.dart';
+import 'package:fromnow/framework/mvvm/statepage/mf_page_error.dart';
+import 'package:fromnow/framework/mvvm/statepage/mf_page_loading.dart';
 import 'package:provider/provider.dart';
 
+import 'base_view_model.dart';
 import 'iview.dart';
 
 abstract class BaseView<T extends BaseViewModel> extends StatefulWidget

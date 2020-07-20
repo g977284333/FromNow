@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fromnow/mvvm/anim/fram_aniam_layout.dart';
+import 'package:fromnow/framework/mvvm/anim/fram_aniam_layout.dart';
 
 /// 加载数据布局
 class MFPageLoading extends StatelessWidget {

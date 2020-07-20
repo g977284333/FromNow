@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fromnow/mvvm/base_view_model.dart';
+
+import '../base_view_model.dart';
 
 /// 错误页面布局
 class MFPageError<T extends BaseViewModel> extends StatelessWidget {

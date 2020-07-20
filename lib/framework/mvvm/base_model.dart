@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:fromnow/network/http_manager.dart';
+import 'package:fromnow/framework/network/http_manager.dart';
 
 class BaseModel {
   get(

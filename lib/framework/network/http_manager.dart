@@ -2,10 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:fromnow/config/config.dart';
-import 'package:fromnow/network/header_interceptor.dart';
-import 'package:fromnow/network/log_interceptor.dart';
-import 'package:fromnow/utils/Logger.dart';
+import 'package:fromnow/framework/config/config.dart';
+import 'package:fromnow/framework/utils/Logger.dart';
+
+import 'header_interceptor.dart';
+import 'log_interceptor.dart';
 
 class HttpManager {
   static const String TAG = "HttpManager";

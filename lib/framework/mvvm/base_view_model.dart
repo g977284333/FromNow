@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
-import 'package:fromnow/mvvm/page_state.dart';
-import 'package:fromnow/mvvm/page_state_view_model.dart';
+import 'package:fromnow/framework/mvvm/page_state.dart';
+import 'package:fromnow/framework/mvvm/page_state_view_model.dart';
 
 class BaseViewModel extends ChangeNotifier {
   PageStateViewModel _pageStateViewModel;

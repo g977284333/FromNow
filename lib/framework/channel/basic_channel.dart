@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:fromnow/utils/Logger.dart';
+import 'package:fromnow/framework/utils/Logger.dart';
 
 class BasicChannel {
   static const String CHANNEL = "cn.fromnow.data/plugin";
