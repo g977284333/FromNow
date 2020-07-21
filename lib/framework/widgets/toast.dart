@@ -1,9 +1,10 @@
+//import 'package:flutter/material.dart';
 //import 'package:fluttertoast/fluttertoast.dart';
 
 class FNToast {
-  static toast() {
+  static toast(String message) {
 //    Fluttertoast.showToast(
-//        msg: "This is Center Short Toast",
+//        msg: message,
 //        toastLength: Toast.LENGTH_SHORT,
 //        gravity: ToastGravity.CENTER,
 //        timeInSecForIos: 1,
