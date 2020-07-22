@@ -44,7 +44,7 @@ class Logger {
         modeStr = "💚 Info: ";
         break;
     }
-    print("$modeStr ${_getStackTrace()} - $msg ");
+    print("$modeStr $tag ${_getStackTrace()} - $msg ");
   }
 
   static String _getStackTrace() {

@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:fromnow/business/login/Login_view_model.dart';
 import 'package:fromnow/framework/mvvm/base_view.dart';
 import 'package:fromnow/framework/utils/Logger.dart';
+import 'package:provider/provider.dart';
 
 class LoginPageView extends BaseView<LoginViewModel> {
   final String TAG = "LoginPageView";
@@ -34,8 +35,8 @@ class LoginPageView extends BaseView<LoginViewModel> {
             SizedBox(
               height: 60,
             ),
-            _buildInputID(),
-            _buildPrivacy(),
+            _buildInputID(context),
+            _buildPrivacy(context),
             SizedBox(height: 20.0),
             _buildLoginButton(context),
             SizedBox(height: 100.0),
@@ -70,7 +71,7 @@ class LoginPageView extends BaseView<LoginViewModel> {
     );
   }
 
-  Widget _buildInputID() {
+  Widget _buildInputID(BuildContext context) {
     return new Container(
       margin: EdgeInsets.symmetric(horizontal: 20),
       decoration:
@@ -79,67 +80,74 @@ class LoginPageView extends BaseView<LoginViewModel> {
           key: _formKey,
           child: new Column(
             mainAxisSize: MainAxisSize.min,
-            children: <Widget>[buildLoginInput(), buildPassWordInput()],
+            children: <Widget>[
+              buildLoginInput(context),
+              buildPassWordInput(context)
+            ],
           )),
     );
   }
 
-  Widget buildLoginInput() {
-    return new TextFormField(
-      controller: _userNameController,
-      focusNode: _focusNodeUserName,
-      // 设置键盘类型
-      keyboardType: TextInputType.number,
-      decoration: InputDecoration(
-        labelText: "用户名",
-        hintText: "请输入手机号",
-        labelStyle: TextStyle(fontSize: 14),
-        // 尾部添加清除按钮
-        suffixIcon: (viewModel.isShowClear)
-            ? IconButton(
-                icon: Icon(Icons.clear),
-                onPressed: () {
-                  // 清空输入框内容
-                  _userNameController.clear();
-                },
-              )
-            : null,
+  Widget buildLoginInput(BuildContext context) {
+    return Consumer(
+      builder: (context, LoginViewModel viewModel, _) => new TextFormField(
+        controller: _userNameController,
+        focusNode: _focusNodeUserName,
+        // 设置键盘类型
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+          labelText: "用户名",
+          hintText: "请输入手机号",
+          labelStyle: TextStyle(fontSize: 14),
+          // 尾部添加清除按钮
+          suffixIcon: (viewModel.isShowClear)
+              ? IconButton(
+                  icon: Icon(Icons.clear),
+                  onPressed: () {
+                    // 清空输入框内容
+                    _userNameController.clear();
+                  },
+                )
+              : null,
+        ),
+        // 验证用户名
+        validator: _validateUserName,
+        // 保存数据
+        onSaved: (String value) {
+          viewModel.username(value);
+        },
       ),
-      // 验证用户名
-      validator: _validateUserName,
-      // 保存数据
-      onSaved: (String value) {
-        viewModel.username(value);
-      },
     );
   }
 
-  Widget buildPassWordInput() {
-    return new TextFormField(
-      focusNode: _focusNodePassWord,
-      decoration: InputDecoration(
-        labelText: "密码",
-        hintText: "请输入密码",
-        labelStyle: TextStyle(fontSize: 14),
-        // 是否显示密码
-        suffixIcon: IconButton(
-          icon: Icon(
-              (viewModel.isShowPwd) ? Icons.visibility : Icons.visibility_off),
-          iconSize: 16,
-          // 点击改变显示或隐藏密码
-          onPressed: () {
-            Logger.i(TAG, "showPassword?");
-            viewModel.setIsShowPwd(!viewModel.isShowPwd);
-          },
-        ),
-      ),
-      obscureText: !viewModel.isShowPwd,
-      // 密码验证
-      validator: _validatePassWord,
-      onSaved: (String value) {
-        viewModel.setPassword(value);
-      },
-    );
+  Widget buildPassWordInput(BuildContext context) {
+    return Consumer(
+        builder: (context, LoginViewModel viewModel, _) => new TextFormField(
+              focusNode: _focusNodePassWord,
+              decoration: InputDecoration(
+                labelText: "密码",
+                hintText: "请输入密码",
+                labelStyle: TextStyle(fontSize: 14),
+                // 是否显示密码
+                suffixIcon: IconButton(
+                  icon: Icon((viewModel.isShowPwd)
+                      ? Icons.visibility
+                      : Icons.visibility_off),
+                  iconSize: 16,
+                  // 点击改变显示或隐藏密码
+                  onPressed: () {
+                    Logger.i(TAG, "showPassword ${viewModel.isShowPwd}");
+                    viewModel.setIsShowPwd(!viewModel.isShowPwd);
+                  },
+                ),
+              ),
+              obscureText: !viewModel.isShowPwd,
+              // 密码验证
+              validator: _validatePassWord,
+              onSaved: (String value) {
+                viewModel.setPassword(value);
+              },
+            ));
   }
 
   Widget _buildLoginButton(BuildContext context) {
@@ -176,18 +184,19 @@ class LoginPageView extends BaseView<LoginViewModel> {
     );
   }
 
-  Widget _buildPrivacy() {
+  Widget _buildPrivacy(BuildContext context) {
     return new Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        new IconButton(
-            icon: new Icon((viewModel.isPrivacyChecked)
-                ? Icons.check_box
-                : Icons.check_box_outline_blank),
-            iconSize: 16,
-            onPressed: () {
-              viewModel.setIsPrivacyChecked(!viewModel.isPrivacyChecked);
-            }),
+        Consumer(
+            builder: (context, LoginViewModel viewModel, _) => new IconButton(
+                icon: new Icon((viewModel.isPrivacyChecked)
+                    ? Icons.check_box
+                    : Icons.check_box_outline_blank),
+                iconSize: 18,
+                onPressed: () {
+                  viewModel.setIsPrivacyChecked(!viewModel.isPrivacyChecked);
+                })),
         new Expanded(
             child: Text.rich(TextSpan(
                 text: "我已认真阅读，理解并同意",
@@ -240,7 +249,7 @@ class LoginPageView extends BaseView<LoginViewModel> {
             IconButton(
               color: Colors.green[200],
               // 第三方库icon图标
-              icon: Icon(Icons.add_comment),
+              icon: Icon(Icons.message),
               iconSize: 40.0,
               onPressed: () {
                 Logger.i(TAG, "Third Login One");
@@ -248,7 +257,7 @@ class LoginPageView extends BaseView<LoginViewModel> {
             ),
             IconButton(
               color: Colors.green[200],
-              icon: Icon(Icons.message),
+              icon: Icon(Icons.email),
               iconSize: 40.0,
               onPressed: () {
                 Logger.i(TAG, "Third Login Two");
@@ -256,7 +265,7 @@ class LoginPageView extends BaseView<LoginViewModel> {
             ),
             IconButton(
               color: Colors.green[200],
-              icon: Icon(Icons.email),
+              icon: Icon(Icons.add_comment),
               iconSize: 40.0,
               onPressed: () {
                 Logger.i(TAG, "Third Login Two");
@@ -323,10 +332,15 @@ class LoginPageView extends BaseView<LoginViewModel> {
     _focusNodePassWord.addListener(_focusNodeListener);
     // 监听用户名变化
     _userNameController.addListener(() {
-      Logger.i(TAG, "UserName changed: " + _userNameController.text);
+      Logger.i(
+          TAG,
+          "UserName changed: " +
+              _userNameController.text +
+              " isShowClear: ${viewModel.isShowClear}");
       // 监听文本框输入变化，控制清除按钮展示
       viewModel
           .setIsShowClear(_userNameController.text.length > 0 ? true : false);
+      Logger.d(TAG, "isShowClear: ${viewModel.isShowClear}");
     });
   }
 
