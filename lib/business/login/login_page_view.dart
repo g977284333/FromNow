@@ -38,8 +38,10 @@ class LoginPageView extends BaseView<LoginViewModel> {
             _buildPrivacy(),
             SizedBox(height: 20.0),
             _buildLoginButton(context),
-            SizedBox(height: 25.0),
-            _buildThirdLogin()
+            SizedBox(height: 100.0),
+            _buildThirdLogin(),
+            SizedBox(height: 20),
+            _buildRegisterAndPwdModified()
           ],
         ));
   }
@@ -231,6 +233,7 @@ class LoginPageView extends BaseView<LoginViewModel> {
             new Container(width: 80, height: 1, color: Colors.grey)
           ],
         ),
+        SizedBox(height: 20),
         new Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -239,22 +242,49 @@ class LoginPageView extends BaseView<LoginViewModel> {
               // 第三方库icon图标
               icon: Icon(Icons.add_comment),
               iconSize: 40.0,
-              onPressed: () {},
+              onPressed: () {
+                Logger.i(TAG, "Third Login One");
+              },
             ),
             IconButton(
               color: Colors.green[200],
-              icon: Icon(Icons.add_comment),
+              icon: Icon(Icons.message),
               iconSize: 40.0,
-              onPressed: () {},
+              onPressed: () {
+                Logger.i(TAG, "Third Login Two");
+              },
             ),
             IconButton(
               color: Colors.green[200],
-              icon: Icon(Icons.add_comment),
+              icon: Icon(Icons.email),
               iconSize: 40.0,
-              onPressed: () {},
+              onPressed: () {
+                Logger.i(TAG, "Third Login Two");
+              },
             )
           ],
         )
+      ],
+    );
+  }
+
+  Widget _buildRegisterAndPwdModified() {
+    return new Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        new GestureDetector(
+          child: new Text("忘记密码？",
+              style: TextStyle(color: Colors.blue, fontSize: 14)),
+          onTap: () {
+            Logger.i(TAG, "点击忘记密码");
+          },
+        ),
+        new GestureDetector(
+            child: new Text("立即注册",
+                style: TextStyle(color: Colors.blue, fontSize: 14)),
+            onTap: () {
+              Logger.i(TAG, "点击立即注册");
+            })
       ],
     );
   }

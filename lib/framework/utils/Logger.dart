@@ -29,19 +29,19 @@ class Logger {
     String modeStr = "";
     switch (mode) {
       case LogMode.info:
-        modeStr = "Info: ";
+        modeStr = "💚 Info: ";
         break;
       case LogMode.debug:
-        modeStr = "Debug: ";
+        modeStr = "💙 Debug: ";
         break;
       case LogMode.warning:
-        modeStr = "Warning: ";
+        modeStr = "💛 Warning: ";
         break;
       case LogMode.error:
-        modeStr = "Error: ";
+        modeStr = "❤️ Error: ";
         break;
       default:
-        modeStr = "Info: ";
+        modeStr = "💚 Info: ";
         break;
     }
     print("$modeStr ${_getStackTrace()} - $msg ");
