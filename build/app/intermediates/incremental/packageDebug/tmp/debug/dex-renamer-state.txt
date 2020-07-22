@@ -1,4 +1,0 @@
-#Tue Jul 21 19:20:34 CST 2020
-base.0=/Users/cheng/Work/workspace/flutter/FromNow/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
