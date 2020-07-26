@@ -53,6 +53,7 @@ flutter:
   assets:
     - images/img_1.jpg
     - images/ic_back.png
+    - images/home_top_bg.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
